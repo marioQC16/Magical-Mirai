@@ -1,0 +1,25 @@
+{
+  "name": "mirai",
+  "version": "1.0.0",
+  "description": "magical mirai 2021",
+  "main": "index.html",
+  "dependencies": {
+    "textalive-app-api": "^0.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marioQC16/Magical-Mirai.git"
+  },
+  "keywords": [
+    "miku"
+  ],
+  "author": "Nin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marioQC16/Magical-Mirai/issues"
+  },
+  "homepage": "https://github.com/marioQC16/Magical-Mirai#readme"
+}
