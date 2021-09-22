@@ -1,31 +1,25 @@
-/**
- * TextAlive App API lyric sheet example
- * https://github.com/TextAliveJp/textalive-app-lyric-sheet
- *
- * インタラクティブな歌詞カードを実装した TextAlive App API のサンプルコードです。
- * 発声にあわせて歌詞が表示され、歌詞をクリックするとそのタイミングに再生がシークします。
- * また、このアプリが TextAlive ホストと接続されていなければ再生コントロールを表示します。
- */
+
  const { Player } = TextAliveApp;
 
  // TextAlive Player を初期化
  const player = new Player({
-   // トークンは https://developer.textalive.jp/profile で取得したものを使う
+ 
+
    app: { token: "ra0mvlhTPtvkLq8s" },
  
    mediaElement: document.querySelector("#media"),
    mediaBannerPosition: "bottom right",
  
-   // オプション一覧
-   // https://developer.textalive.jp/packages/textalive-app-api/interfaces/playeroptions.html
  });
  
  const overlay = document.querySelector("#overlay");
  const bar = document.querySelector("#bar");
- const textContainer = document.querySelector("#text");
+ const lyrics = document.querySelector("#text");
+ const textBox = document.querySelector("#textBox");
  const seekbar = document.querySelector("#seekbar");
  const paintedSeekbar = seekbar.querySelector("div");
  let b, c;
+ var  lyricWidth = 0;
  
  player.addListener({
    /* APIの準備ができたら呼ばれる */
@@ -111,8 +105,10 @@
  
      // 500ms先に発声される文字を取得, TL: have the voice speak 500ms before text
      // I quick fixed it by doing 0 but I could remove or repurpose for remove after x ms
+
+     //this is problem
      let current = c || player.video.firstChar;
-     while (current && current.startTime < position + 0) {
+     while (current && current.startTime < position ) {
        // 新しい文字が発声されようとしている
        if (c !== current) {
          newChar(current);
@@ -179,31 +175,33 @@
   * Called when a new character is being vocalized
   */
  function newChar(current) {
+
+  if(lyricWidth >= textBox.clientWidth - 50){
+    resetChars();
+   }
    // 品詞 (part-of-speech)
    // https://developer.textalive.jp/packages/textalive-app-api/interfaces/iword.html#pos
    const classes = [];
-   if (
-     current.parent.pos === "N" ||
-     current.parent.pos === "PN" ||
-     current.parent.pos === "X"
-   ) {
-     classes.push("noun");
-   }
+   
  
    // フレーズの最後の文字か否か
    if (current.parent.parent.lastChar === current) {
      classes.push("lastChar");
+     lyricWidth = lyricWidth + 40;
    }
  
    // 英単語の最初か最後の文字か否か
    if (current.parent.language === "en") {
      if (current.parent.lastChar === current) {
        classes.push("lastCharInEnglishWord");
-     } else if (current.parent.firstChar === current) {
+       lyricWidth = lyricWidth + 20;
+     } 
+     else if (current.parent.firstChar === current) {
        classes.push("firstCharInEnglishWord");
+       lyricWidth = lyricWidth + 20;
      }
    }
- 
+ //RIGHT HERE IS LINE BREAKING
    // noun, lastChar クラスを必要に応じて追加
    const div = document.createElement("div");
    div.appendChild(document.createTextNode(current.text));
@@ -212,10 +210,10 @@
    const container = document.createElement("div");
    container.className = classes.join(" ");
    container.appendChild(div);
-   container.addEventListener("click", () => {
-     player.requestMediaSeek(current.startTime);
-   });
-   textContainer.appendChild(container);
+   lyrics.appendChild(container);
+
+   lyricWidth = lyricWidth + container.clientWidth;
+   
  }
  
  /**
@@ -224,6 +222,8 @@
   */
  function resetChars() {
    c = null;
-   while (textContainer.firstChild)
-     textContainer.removeChild(textContainer.firstChild);
+   while (lyrics.firstChild){
+      lyrics.removeChild(lyrics.firstChild);
+   }
+   lyricWidth = 0;
  }
