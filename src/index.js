@@ -18,8 +18,14 @@
  const textBox = document.querySelector("#textBox");
  const seekbar = document.querySelector("#seekbar");
  const paintedSeekbar = seekbar.querySelector("div");
+
+ const arena = document.querySelector("#arena");
+ const audience = document.querySelector("#crowd");
+
+
  let b, c;
  var  lyricWidth = 0;
+ var ctx = audience.getContext("2d");
  
  player.addListener({
    /* APIの準備ができたら呼ばれる */
@@ -79,7 +85,10 @@
        parseInt((position * 1000) / player.video.duration) / 10
      }%`;
  
-     // 現在のビート情報を取得
+
+
+
+     // This Beats
      let beat = player.findBeat(position);
      if (b !== beat) {
        if (beat) {
@@ -93,6 +102,10 @@
        b = beat;
      }
  
+
+
+
+
      // 歌詞情報がなければこれで処理を終わる
      if (!player.video.firstChar) {
        return;
@@ -170,6 +183,47 @@
    return false;
  });
  
+// Making a line as many times as needed
+// X max = 300, Y Max = 150
+// width 2-3 is good
+// hight 15 maybe
+
+drawArc(150, 150);
+drawLine( [30, 50], [100, 110], "rgba(58, 58, 58, 0.4)", 16);
+drawLine( [150, 0], [150, 90], "rgba(58, 58, 58, 0.4)", 16);
+drawLine( [200, 110], [270, 50], "rgba(58, 58, 58, 0.4)", 15);
+
+
+
+
+
+// 11 is the number of fellas in a standard screen 
+for(let i = 0; i < 11; i++){
+ 
+// This Section 
+var canv = document.createElement('canvas');
+canv.id = 'person ' + i;
+var canvDraw = canv.getContext('2d');
+
+//set dimensions
+canvDraw.width = ctx.width;
+canvDraw.height = ctx.height;
+    //draws the OG to the source
+    
+    canvDraw.drawImage(audience, 0, 0);
+
+  document.body.appendChild(canv); // adds the canvas to the body element
+
+arena.appendChild(canv); // adds the canvas to arena
+}
+
+
+
+
+
+
+
+
  /**
   * 新しい文字の発声時に呼ばれる
   * Called when a new character is being vocalized
@@ -201,8 +255,8 @@
        lyricWidth = lyricWidth + 20;
      }
    }
- //RIGHT HERE IS LINE BREAKING
-   // noun, lastChar クラスを必要に応じて追加
+ 
+
    const div = document.createElement("div");
    div.appendChild(document.createTextNode(current.text));
  
@@ -227,3 +281,28 @@
    }
    lyricWidth = 0;
  }
+
+ // Drawing a line
+ function drawLine(begin, end, stroke = 'black', width) {
+  if (stroke) {
+      ctx.strokeStyle = stroke;
+  }
+
+  if (width) {
+    ctx.lineWidth = width;
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(...begin);
+  ctx.lineTo(...end);
+  ctx.stroke();
+}
+
+function drawArc(leftPoint, lowPoint){
+  ctx.lineWidth = 10;
+  ctx.beginPath();
+  ctx.arc(leftPoint, lowPoint, 50, 1 * Math.PI, 0 );
+  ctx.stroke();
+  
+
+}

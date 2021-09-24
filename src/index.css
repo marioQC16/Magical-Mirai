@@ -1,4 +1,4 @@
-/* 背景 / Background */
+/* Background attributes*/
 body {
     background: rgb(144,158,141);
 
@@ -6,8 +6,7 @@ body {
     background-size: 100%;
   }
   
-  /* オーバーレイ / Overlay */
-  /*nvm i wasn't but it will stay gamer and also symbol could be like 39 or something*/
+  /* Attributes for the overlay that occurs when the page is loading, TO DO CHANGE THE SYMBOL TO 39*/
   #overlay {
     user-select: none;
     position: fixed;
@@ -108,10 +107,7 @@ body {
     height: 0;
   }
   
-  /**
-   * ビート情報が取れるようになったらビートバーを表示
-   * Show beat bar when beat information becomes available
-   */
+  /* THIS IS THE EXISTANCE FOR THE BEAT BAR WHICH WILL NOT EXIST*/
   @keyframes activateBeatBar {
     0% {
       opacity: 0;
@@ -122,10 +118,7 @@ body {
     }
   }
   
-  /**
-   * ビート毎に右に広げてフェードアウト
-   * Make beat bar span to the right and then fade out
-   */
+  /* THIS IS THE ANIMATION FOR THE BEAT BAR WHICH WILL NOT EXIST*/
   @keyframes showBeatBar {
     0% {
       width: 0;
@@ -143,7 +136,7 @@ body {
   
   
   
-  /* ビートバー / Beat bar */
+  /* THESE CONTROL THE BEAT BAR WHICH WILL NOT BE USED IN THE FINAL BUILD*/
   #bar {
     opacity: 0;
     height: 3px;
@@ -155,6 +148,8 @@ body {
   #bar.beat {
     animation: showBeatBar 0.5s;
   }
+
+  /* This is the box that contains the lyrics div, used to create the LCD text area background*/
   #textBox{
     position: absolute;
     top: 20%;
@@ -163,7 +158,8 @@ body {
     bottom: 72%;
     background-color: rgba(58, 58, 58, 0.4);
   }
-  /* 歌詞 / Lyrics */
+
+  /* This is the attributes for all lyrics*/
   #lyrics {
     
     z-index: 0;
@@ -176,20 +172,17 @@ body {
     user-select: none;
    
   }
+
+  /* This makes it so each new div does not create a new line*/
   #text > div {
-    /* 文字ごとに改行しない / No line-break per char */
+    
     display: inline-block;
   }
-  #text > div > div {
-    animation: showLyrics 0.5s;
-  }
   
   
   
-  /**
-   * フレーズ終わりで右にマージンを空けて読みやすくする
-   * Add right margin to the last char in phrases
-   */
+  
+  /* These add a minor margin to: the final character in a phrase, the first english letter in a word, and the last english letter in a word*/
   #text .lastChar {
     margin-right: 40px;
   }
@@ -206,6 +199,24 @@ body {
     margin-left: 0;
   }
   
+
+#arena {
+  position:absolute;
+  top: 65%;
+  width: 99%;
+  height: 35%;
+}
+
+
+
+#crowd {
+  position: relative;
+}
+
+
+
+
+  /* THIS IS NOT GOING TO BE IN THE FINAL BUILD THIS IS THE SEEK BAR */
   #seekbar {
     position: fixed;
     top: 0;
