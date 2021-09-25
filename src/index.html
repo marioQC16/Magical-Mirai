@@ -14,44 +14,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <!-- オーバーレイ / Overlay -->
+    <!-- Overlay used when first loading the page -->
     <div id="overlay">
       <p><span class="far">&#xf254;</span>now loading...</p>
     </div>
 
-    <!-- ヘッダ / Header -->
+    <!-- Header contains the user controls -->
     <div id="header">
-      <!-- 再生コントロール / Playback control -->
+      <!-- Song controls -->
       <div id="control" class="far">
         <a href="#" id="play" class="disabled">&#xf144;</a>
         <a href="#" id="stop" class="disabled">&#xf28d;</a>
       </div>
-      <!-- アーティストと楽曲の情報 / Artist and song info -->
+      <!-- Artist and Song Info -->
       <div id="meta">
         <div id="artist">artist: <span>-</span></div>
         <div id="song">song: <span>-</span></div>
       </div>
     </div>
 
-    <!-- 音源 / Audio souce -->
+    <!-- Song source-->
     <div id="media"></div>
 <div id = "textBox">
-    <!-- 歌詞 / Lyrics text -->
+    <!-- The section that contains all Lyrics -->
     <div id="lyrics">
-      <!-- 文字 / Text -->
+      <!-- Where the lyrics actually go -->
       <div id="text"></div>
-      <!-- ビートバー / Beat bar -->
-      <div id="bar"></div>
     </div>
 </div>
 <div id = "arena">
 <canvas id = "crowd">
+  <canvas id = "penlight" ></canvas>
 </canvas>
 </div>
-    <!-- シークバー -->
-    <div id="seekbar">
-      <div></div>
-    </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>

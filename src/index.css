@@ -107,47 +107,10 @@ body {
     height: 0;
   }
   
-  /* THIS IS THE EXISTANCE FOR THE BEAT BAR WHICH WILL NOT EXIST*/
-  @keyframes activateBeatBar {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      width: 100%;
-      opacity: 1;
-    }
-  }
-  
-  /* THIS IS THE ANIMATION FOR THE BEAT BAR WHICH WILL NOT EXIST*/
-  @keyframes showBeatBar {
-    0% {
-      width: 0;
-      opacity: 1;
-    }
-    50% {
-      width: 100%;
-      opacity: 1;
-    }
-    100% {
-      width: 100%;
-      opacity: 0;
-    }
-  }
   
   
   
-  /* THESE CONTROL THE BEAT BAR WHICH WILL NOT BE USED IN THE FINAL BUILD*/
-  #bar {
-    opacity: 0;
-    height: 3px;
-    background: rgb(255 222 193);
-  }
-  #bar.active {
-    animation: activateBeatBar 0.3s;
-  }
-  #bar.beat {
-    animation: showBeatBar 0.5s;
-  }
+  
 
   /* This is the box that contains the lyrics div, used to create the LCD text area background*/
   #textBox{
@@ -213,21 +176,3 @@ body {
   position: relative;
 }
 
-
-
-
-  /* THIS IS NOT GOING TO BE IN THE FINAL BUILD THIS IS THE SEEK BAR */
-  #seekbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: rgba(255 255 255 / 40%);
-  }
-  
-  #seekbar > div {
-    width: 0;
-    height: 100%;
-    background: rgba(255 255 255 / 80%);
-  }

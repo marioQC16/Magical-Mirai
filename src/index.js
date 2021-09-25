@@ -13,18 +13,21 @@
  });
  
  const overlay = document.querySelector("#overlay");
- const bar = document.querySelector("#bar");
+ 
  const lyrics = document.querySelector("#text");
  const textBox = document.querySelector("#textBox");
- const seekbar = document.querySelector("#seekbar");
- const paintedSeekbar = seekbar.querySelector("div");
+
 
  const arena = document.querySelector("#arena");
  const audience = document.querySelector("#crowd");
 
 
  let b, c;
+ var beatCounter = 1;
  var  lyricWidth = 0;
+ const faded = "rgb(109,118,108)";
+ const miku = "rgb(57, 197, 187)";
+
  var ctx = audience.getContext("2d");
  
  player.addListener({
@@ -56,7 +59,6 @@
    onAppMediaChange() {
      // 画面表示をリセット
      overlay.className = "";
-     bar.className = "";
      resetChars();
    },
  
@@ -80,10 +82,6 @@
  
    /* 再生位置の情報が更新されたら呼ばれる */
    onTimeUpdate(position) {
-     // シークバーの表示を更新
-     paintedSeekbar.style.width = `${
-       parseInt((position * 1000) / player.video.duration) / 10
-     }%`;
  
 
 
@@ -92,12 +90,41 @@
      let beat = player.findBeat(position);
      if (b !== beat) {
        if (beat) {
-         requestAnimationFrame(() => {
-           bar.className = "active";
-           requestAnimationFrame(() => {
-             bar.className = "active beat";
-           });
-         });
+
+
+         if(beatCounter == 1)
+         {
+          drawLineLeft(miku);
+          drawLineCenter(faded);
+          drawLineRight(faded);
+          cloneCanvas();
+          beatCounter++
+         }
+
+         else if(beatCounter == 2 || beatCounter == 4)
+         {
+           drawLineCenter(miku);
+           drawLineLeft(faded);
+           drawLineRight(faded);
+           cloneCanvas();
+           
+           if(beatCounter == 4){
+             beatCounter = 1;
+           }
+           else{
+             beatCounter++;
+           }
+         }
+
+         else if(beatCounter == 3)
+         {
+           drawLineRight(miku);
+           drawLineCenter(faded);
+           drawLineLeft(faded);
+           cloneCanvas();
+           beatCounter++;
+         }
+
        }
        b = beat;
      }
@@ -164,58 +191,50 @@
    e.preventDefault();
    if (player) {
      player.requestStop();
- 
-     // 再生を停止したら画面表示をリセットする
-     bar.className = "";
      resetChars();
    }
    return false;
  });
  
- /* シークバー */
- seekbar.addEventListener("click", (e) => {
-   e.preventDefault();
-   if (player) {
-     player.requestMediaSeek(
-       (player.video.duration * e.offsetX) / seekbar.clientWidth
-     );
-   }
-   return false;
- });
  
+
+
+
+
+
 // Making a line as many times as needed
 // X max = 300, Y Max = 150
 // width 2-3 is good
 // hight 15 maybe
 
 drawArc(150, 150);
-drawLine( [30, 50], [100, 110], "rgba(58, 58, 58, 0.4)", 16);
-drawLine( [150, 0], [150, 90], "rgba(58, 58, 58, 0.4)", 16);
-drawLine( [200, 110], [270, 50], "rgba(58, 58, 58, 0.4)", 15);
-
-
-
-
+drawLineLeft(faded);
+drawLineCenter(faded);
+drawLineRight(faded);
 
 // 11 is the number of fellas in a standard screen 
 for(let i = 0; i < 11; i++){
  
-// This Section 
-var canv = document.createElement('canvas');
-canv.id = 'person ' + i;
-var canvDraw = canv.getContext('2d');
+  // This Section makes a new canvas then makes it copy what the og had
+  var canv = document.createElement('canvas');
+  canv.id = 'person ' + i;
+  var canvDraw = canv.getContext('2d');
+  
+  
+  //set dimensions
+  canvDraw.width = ctx.width;
+  canvDraw.height = ctx.height;
+      //draws the OG to the source
+      
+      canvDraw.drawImage(audience, 0, 0);
+  
+    document.body.appendChild(canv); // adds the canvas to the body element
+  
+  arena.appendChild(canv); // adds the canvas to arena
+  }
 
-//set dimensions
-canvDraw.width = ctx.width;
-canvDraw.height = ctx.height;
-    //draws the OG to the source
-    
-    canvDraw.drawImage(audience, 0, 0);
 
-  document.body.appendChild(canv); // adds the canvas to the body element
 
-arena.appendChild(canv); // adds the canvas to arena
-}
 
 
 
@@ -291,18 +310,48 @@ arena.appendChild(canv); // adds the canvas to arena
   if (width) {
     ctx.lineWidth = width;
   }
-
+  
   ctx.beginPath();
   ctx.moveTo(...begin);
   ctx.lineTo(...end);
   ctx.stroke();
 }
 
+// This draws an arc, used in creating the crowd
 function drawArc(leftPoint, lowPoint){
   ctx.lineWidth = 10;
   ctx.beginPath();
   ctx.arc(leftPoint, lowPoint, 50, 1 * Math.PI, 0 );
   ctx.stroke();
-  
+}
 
+function drawLineLeft(color) {
+  drawLine( [30, 50], [100, 110], color, 16);
+
+  if(color != faded)
+  drawLine( [80, 93], [100, 110], "black", 16);
+}
+
+function drawLineCenter(color) {
+  drawLine( [150, 0], [150, 90], color, 16);
+
+  if(color != faded)
+  drawLine( [150, 63], [150, 90], "black", 16);
+}
+
+function drawLineRight(color) {
+  drawLine( [200, 110], [270, 50], color, 16);
+
+  if(color != faded)
+  drawLine( [200, 110], [220, 93], "black", 16);
+}
+
+
+// This clones the contents of the first canvas and applies it to the other canvases to create identical copies
+function cloneCanvas(){
+for(let i = 0; i < 11; i++){
+  var crowd = document.getElementById('person ' + i);
+  var clone = crowd.getContext('2d');
+  clone.drawImage(audience, 0, 0);
+  }
 }
