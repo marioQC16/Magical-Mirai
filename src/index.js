@@ -94,18 +94,18 @@
 
          if(beatCounter == 1)
          {
-          drawLineLeft(miku);
-          drawLineCenter(faded);
-          drawLineRight(faded);
+          drawLineLeft(ctx, miku);
+          drawLineCenter(ctx, faded);
+          drawLineRight(ctx, faded);
           cloneCanvas();
           beatCounter++
          }
 
          else if(beatCounter == 2 || beatCounter == 4)
          {
-           drawLineCenter(miku);
-           drawLineLeft(faded);
-           drawLineRight(faded);
+           drawLineCenter(ctx, miku);
+           drawLineLeft(ctx, faded);
+           drawLineRight(ctx, faded);
            cloneCanvas();
            
            if(beatCounter == 4){
@@ -118,9 +118,9 @@
 
          else if(beatCounter == 3)
          {
-           drawLineRight(miku);
-           drawLineCenter(faded);
-           drawLineLeft(faded);
+           drawLineRight(ctx, miku);
+           drawLineCenter(ctx, faded);
+           drawLineLeft(ctx, faded);
            cloneCanvas();
            beatCounter++;
          }
@@ -208,12 +208,12 @@
 // hight 15 maybe
 
 drawArc(150, 150);
-drawLineLeft(faded);
-drawLineCenter(faded);
-drawLineRight(faded);
+drawLineLeft(ctx, faded);
+drawLineCenter(ctx, faded);
+drawLineRight(ctx, faded);
 
 // 11 is the number of fellas in a standard screen 
-for(let i = 0; i < 11; i++){
+for(let i = 0; i < 12; i++){
  
   // This Section makes a new canvas then makes it copy what the og had
   var canv = document.createElement('canvas');
@@ -302,19 +302,19 @@ for(let i = 0; i < 11; i++){
  }
 
  // Drawing a line
- function drawLine(begin, end, stroke = 'black', width) {
+ function drawLine(selectedCanvas, begin, end, stroke = 'black', width) {
   if (stroke) {
-      ctx.strokeStyle = stroke;
+    selectedCanvas.strokeStyle = stroke;
   }
 
   if (width) {
-    ctx.lineWidth = width;
+    selectedCanvas.lineWidth = width;
   }
   
-  ctx.beginPath();
-  ctx.moveTo(...begin);
-  ctx.lineTo(...end);
-  ctx.stroke();
+  selectedCanvas.beginPath();
+  selectedCanvas.moveTo(...begin);
+  selectedCanvas.lineTo(...end);
+  selectedCanvas.stroke();
 }
 
 // This draws an arc, used in creating the crowd
@@ -325,31 +325,31 @@ function drawArc(leftPoint, lowPoint){
   ctx.stroke();
 }
 
-function drawLineLeft(color) {
-  drawLine( [30, 50], [100, 110], color, 16);
+function drawLineLeft(selectedCanvas, color) {
+  drawLine(selectedCanvas, [30, 50], [100, 110], color, 16);
 
   if(color != faded)
-  drawLine( [80, 93], [100, 110], "black", 16);
+  drawLine(selectedCanvas, [80, 93], [100, 110], "black", 16);
 }
 
-function drawLineCenter(color) {
-  drawLine( [150, 0], [150, 90], color, 16);
+function drawLineCenter(selectedCanvas, color) {
+  drawLine(selectedCanvas, [150, 0], [150, 90], color, 16);
 
   if(color != faded)
-  drawLine( [150, 63], [150, 90], "black", 16);
+  drawLine(selectedCanvas, [150, 63], [150, 90], "black", 16);
 }
 
-function drawLineRight(color) {
-  drawLine( [200, 110], [270, 50], color, 16);
+function drawLineRight(selectedCanvas, color) {
+  drawLine(selectedCanvas, [200, 110], [270, 50], color, 16);
 
   if(color != faded)
-  drawLine( [200, 110], [220, 93], "black", 16);
+  drawLine(selectedCanvas, [200, 110], [220, 93], "black", 16);
 }
 
 
 // This clones the contents of the first canvas and applies it to the other canvases to create identical copies
 function cloneCanvas(){
-for(let i = 0; i < 11; i++){
+for(let i = 0; i < 12; i++){
   var crowd = document.getElementById('person ' + i);
   var clone = crowd.getContext('2d');
   clone.drawImage(audience, 0, 0);
