@@ -6,7 +6,7 @@ body {
     background-size: 100%;
   }
   
-  /* Attributes for the overlay that occurs when the page is loading, TO DO CHANGE THE SYMBOL TO 39*/
+  /* Attributes for the overlay that occurs when the page is loading*/
   #overlay {
     user-select: none;
     position: fixed;
@@ -26,14 +26,15 @@ body {
   }
   #overlay > p {
     width: 100vw;
-    font-size: 40px;
+    font-size: 80px;
     text-align: center;
   }
-  #overlay > p > span {
-    display: inline-block;
-    padding-right: 20px;
-    margin-right: 20px;
-    border-right: 1px solid #fff6;
+  #loadingImg{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    height: 300px;
+    width: 300px;
   }
   
   /* フッターと音源 / Header and audio source */
@@ -115,10 +116,10 @@ body {
   /* This is the box that contains the lyrics div, used to create the LCD text area background*/
   #textBox{
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 20%;
     right: 20%;
-    bottom: 72%;
+    bottom: 77%;
     background-color: rgba(58, 58, 58, 0.4);
   }
 
@@ -174,4 +175,18 @@ body {
 
 #crowd {
   position: absolute;
+}
+
+#stage {
+  position: absolute;
+    top: 30%;
+    left: 30%;
+    right: 30%;
+    bottom: 40%;
+}
+
+#platform{
+  position: relative;
+  height: 100%;
+  width: 100%;
 }

@@ -20,6 +20,7 @@
 
  const arena = document.querySelector("#arena");
  const audience = document.querySelector("#crowd");
+ const platform   = document.querySelector("#platform");
 
 
  let b, c;
@@ -29,6 +30,7 @@
  const miku = "rgb(57, 197, 187)";
 
  var ctx = audience.getContext("2d");
+ var platCtx = platform.getContext("2d");
  
  player.addListener({
    /* APIの準備ができたら呼ばれる */
@@ -207,7 +209,7 @@
 // width 2-3 is good
 // hight 15 maybe
 
-drawArc(150, 150);
+drawArc(ctx, 10, 150, 150, 50, false);
 drawLineLeft(ctx, faded);
 drawLineCenter(ctx, faded);
 drawLineRight(ctx, faded);
@@ -234,7 +236,7 @@ for(let i = 0; i < 12; i++){
   }
 
 
-
+drawArc(platCtx, 5, 150, 10, 130, true);
 
 
 
@@ -317,13 +319,23 @@ for(let i = 0; i < 12; i++){
   selectedCanvas.stroke();
 }
 
-// This draws an arc, used in creating the crowd
-function drawArc(leftPoint, lowPoint){
-  ctx.lineWidth = 10;
-  ctx.beginPath();
-  ctx.arc(leftPoint, lowPoint, 50, 1 * Math.PI, 0 );
-  ctx.stroke();
+
+
+// This draws an arc,
+function drawArc(selectedCanvas, width, leftPoint, lowPoint, radius, rotation){
+  selectedCanvas.lineWidth = width;
+  selectedCanvas.beginPath();
+  if(rotation){
+    selectedCanvas.arc(leftPoint, lowPoint, radius, 10/11 * Math.PI, 1/11 * Math.PI, rotation);
+  }
+  else {
+    selectedCanvas.arc(leftPoint, lowPoint, radius, 1 * Math.PI, 0, rotation);
+  }
+  
+  selectedCanvas.stroke();
 }
+
+
 
 function drawLineLeft(selectedCanvas, color) {
   drawLine(selectedCanvas, [30, 50], [100, 110], color, 16);
