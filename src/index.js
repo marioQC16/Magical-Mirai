@@ -21,6 +21,8 @@
  const arena = document.querySelector("#arena");
  const audience = document.querySelector("#crowd");
  const platform   = document.querySelector("#platform");
+ const frame1 = document.querySelector("#frame1");
+ const frame2 = document.querySelector("#frame2");
 
 
  let b, c;
@@ -78,6 +80,7 @@
    /* 再生コントロールができるようになったら呼ばれる */
    onTimerReady() {
      overlay.className = "disabled";
+     frame2.style.visibility = "hidden";
      document.querySelector("#control > a#play").className = "";
      document.querySelector("#control > a#stop").className = "";
    },
@@ -92,7 +95,15 @@
      let beat = player.findBeat(position);
      if (b !== beat) {
        if (beat) {
-
+        
+        if(frame1.style.visibility == "hidden"){
+          frame2.style.visibility = "hidden";
+          frame1.style.visibility = "visible";
+        }
+        else{
+          frame1.style.visibility = "hidden";
+          frame2.style.visibility = "visible";
+        }
 
          if(beatCounter == 1)
          {

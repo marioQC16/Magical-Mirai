@@ -183,10 +183,100 @@ body {
     left: 30%;
     right: 30%;
     bottom: 40%;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 40px;
+    color: rgba(58, 58, 58, 0.4);
 }
+#frame1{
+  position: absolute;
+  top: 3%;
+  left: 34%;
+}
+
+#frame2{
+  position: absolute;
+  top: 0%;
+  left: 34%;
+}
+
 
 #platform{
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+#note1{
+  font-size: 60px;
+  position: absolute;
+  top: 10%;
+  left: 65%;
+}
+
+#note2{
+  font-size: 60px;
+  position: absolute;
+  top: -15%;
+  left: 35%;
+}
+
+#note3{
+  font-size: 60px;
+  position: absolute;
+  top: 30%;
+  left: 27%;
+}
+
+#light1{
+  position: absolute;
+  top: 40%;
+  left: 7%;
+}
+
+#light2{
+  position: absolute;
+  top: 60%;
+  left: 14%;
+}
+
+#light3{
+  position: absolute;
+  top: 74%;
+  left: 23%;
+}
+
+#light4{
+  position: absolute;
+  top: 84%;
+  left: 34%;
+}
+
+#light5{
+  position: absolute;
+  top: 88%;
+  left: 47%;
+}
+
+#light6{
+  position: absolute;
+  top: 84%;
+  left: 60%;
+}
+
+#light7{
+  position: absolute;
+  top: 74%;
+  left: 71%;
+}
+
+#light8{
+  position: absolute;
+  top: 60%;
+  left: 80%;
+}
+
+#light9{
+  position: absolute;
+  top: 40%;
+  left: 87%;
 }
