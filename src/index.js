@@ -1,5 +1,5 @@
 
- const { Player } = TextAliveApp;
+ import { Player } from "textalive-app-api";
 
  // TextAlive Player を初期化
  const player = new Player({

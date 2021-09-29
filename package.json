@@ -1,12 +1,12 @@
 {
   "name": "mirai",
+  "private": true,
   "version": "1.0.0",
   "description": "magical mirai 2021",
   "dependencies": {
     "textalive-app-api": "^0.3.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/index.html --dist-dir dev",
     "build": "parcel build src/index.html --public-url ./ --dist-dir docs --no-source-maps"
   },
