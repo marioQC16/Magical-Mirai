@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/marioQC16/Magical-Mirai/issues"
   },
-  "homepage": "https://github.com/marioQC16/Magical-Mirai#readme"
+  "homepage": "https://github.com/marioQC16/Magical-Mirai#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-nightly.841"
+  }
 }
