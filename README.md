@@ -25,6 +25,14 @@ Using the beat the page simulates a Live Concert by having a crowd wave their pe
 The stage where the performer stands has lights that also cycle through set colors every other beat.
 Finally the performer will generate music notes every other beat as well.
 
+![image](https://user-images.githubusercontent.com/63430849/135356724-d699ccb2-777f-40d5-abc4-c98f69b01679.png)
+
+
+The user has the option to change the color of the penlights to one of 6 colors
+
+![image](https://user-images.githubusercontent.com/63430849/135356811-509a3d52-ebde-4dc1-b92d-0cdeb9d2a4e5.png)
+
+
 This app can be run with other songs by changing the "create from song URL" parameters, by default Freedom! is being used
 
 https://github.com/marioQC16/Magical-Mirai
