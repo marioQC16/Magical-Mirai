@@ -29,7 +29,20 @@
  var beatCounter = 1;
  var  lyricWidth = 0;
  const faded = "rgb(109,118,108)";
+
  const miku = "rgb(57, 197, 187)";
+ const rin = "rgb(255,204,17)";
+ const len = "rgb(255,238,18)";
+ const luka = "rgb(255,186,204)";
+ const kaito = "rgb(51,103,205)";
+ const meiko = "rgb(222,68,68)";
+
+ const colors = [miku, rin, len, luka, kaito, meiko];
+
+ var stageLight = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+ var lightBuffer = [false, false, false, false, false, false, false, false, false ];
+ var lightEnabled = [false, false, false, false, false, false, false, false, false ];
+ var turnLightOn = 0;
 
  var ctx = audience.getContext("2d");
  var platCtx = platform.getContext("2d");
@@ -137,6 +150,7 @@
            cloneCanvas();
            beatCounter++;
          }
+         updateLights();
 
        }
        b = beat;
@@ -377,4 +391,35 @@ for(let i = 0; i < 12; i++){
   var clone = crowd.getContext('2d');
   clone.drawImage(audience, 0, 0);
   }
+}
+
+function updateLights(){
+  for(var i = 0; i < 9; i++){
+    if(!lightEnabled[turnLightOn]){
+      lightEnabled[turnLightOn] = true;
+    }
+    
+    if(lightEnabled[i]){    //check if the light has been turned on 
+
+      if(lightBuffer[i]){   // check if the light is on a buffer if so then don't do anything
+        lightBuffer[i] = false;
+        if(stageLight[i] > 4){
+          stageLight[i] = 0;
+        }
+        else{
+          stageLight[i]++;
+        }
+       
+      }
+      else{                 // check if the light is off buffer if so then change the color to the next in line
+        document.getElementById("light" + i).style.color = colors[stageLight[i]];
+        lightBuffer[i] = true;
+      }
+    }
+  }
+  turnLightOn++;
+}
+
+function updateNotes(){
+  
 }
