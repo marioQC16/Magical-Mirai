@@ -2,7 +2,6 @@
   "name": "mirai",
   "version": "1.0.0",
   "description": "magical mirai 2021",
-  "main": "index.html",
   "dependencies": {
     "textalive-app-api": "^0.3.0"
   },
