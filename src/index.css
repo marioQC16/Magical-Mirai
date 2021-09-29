@@ -1,7 +1,6 @@
 /* Background attributes*/
 body {
     background: rgb(144,158,141);
-
     background-attachment: fixed;
     background-size: 100%;
   }
@@ -63,9 +62,6 @@ body {
     font-size: 10.5px;
     font-weight: bold;
   
-    /* 子要素を横に並べて配置 / Align child content to the right */
-    
-  
     /* 子要素は縦に中央揃え / Vertically middle-aligned */
     align-items: center;
   }
@@ -90,17 +86,13 @@ body {
     color: rgb(255 148 56);
   }
   
-  /* アーティストと楽曲の情報 / Artist and song info */
   #play {
     padding-right: 5px;
     padding-left: 10px;
     border-right: 1px solid #fff9;
   }
 
-  #stop{
-    padding-left: 0px;
-  }
-
+  /* The menu that allows for color changing*/
   #settings{
     text-align: center;
     padding-top: 20px;
@@ -121,11 +113,6 @@ body {
     height: 0;
   }
   
-  
-  
-  
-  
-
   /* This is the box that contains the lyrics div, used to create the LCD text area background*/
   #textBox{
     position: absolute;
@@ -156,9 +143,6 @@ body {
     display: inline-block;
   }
   
-  
-  
-  
   /* These add a minor margin to: the final character in a phrase, the first english letter in a word, and the last english letter in a word*/
   #text .lastChar {
     margin-right: 40px;
@@ -176,7 +160,7 @@ body {
     margin-left: 0;
   }
   
-
+/* The position of the place the crowd goes */
 #arena {
   position:absolute;
   top: 65%;
@@ -184,12 +168,11 @@ body {
   height: 35%;
 }
 
-
-
 #crowd {
   position: absolute;
 }
 
+/* The position for the stage and any contents that go on it */
 #stage {
   position: absolute;
     top: 30%;
@@ -200,6 +183,7 @@ body {
     font-size: 40px;
     color: rgba(58, 58, 58, 0.4);
 }
+/* The 2 frames of the animation*/
 #frame1{
   position: absolute;
   top: 3%;
@@ -212,13 +196,13 @@ body {
   left: 34%;
 }
 
-
 #platform{
   position: relative;
   height: 100%;
   width: 100%;
 }
 
+/* The 3 notes that randomly light up*/
 #note0{
   font-size: 60px;
   position: absolute;
@@ -240,6 +224,7 @@ body {
   left: 27%;
 }
 
+/* The stage lights*/
 #light0{
   position: absolute;
   top: 40%;
