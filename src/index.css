@@ -206,21 +206,21 @@ body {
   width: 100%;
 }
 
-#note1{
+#note0{
   font-size: 60px;
   position: absolute;
   top: 10%;
   left: 65%;
 }
 
-#note2{
+#note1{
   font-size: 60px;
   position: absolute;
   top: -15%;
   left: 35%;
 }
 
-#note3{
+#note2{
   font-size: 60px;
   position: absolute;
   top: 30%;

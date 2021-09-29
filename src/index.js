@@ -28,8 +28,8 @@
  let b, c;
  var beatCounter = 1;
  var  lyricWidth = 0;
- const faded = "rgb(109,118,108)";
 
+ const faded = "rgb(109,118,108)";
  const miku = "rgb(57, 197, 187)";
  const rin = "rgb(255,204,17)";
  const len = "rgb(255,238,18)";
@@ -43,6 +43,8 @@
  var lightBuffer = [false, false, false, false, false, false, false, false, false ];
  var lightEnabled = [false, false, false, false, false, false, false, false, false ];
  var turnLightOn = 0;
+
+ var noteOn = [true, false, false];
 
  var ctx = audience.getContext("2d");
  var platCtx = platform.getContext("2d");
@@ -124,6 +126,7 @@
           drawLineCenter(ctx, faded);
           drawLineRight(ctx, faded);
           cloneCanvas();
+          updateNotes();
           beatCounter++
          }
 
@@ -133,6 +136,7 @@
            drawLineLeft(ctx, faded);
            drawLineRight(ctx, faded);
            cloneCanvas();
+           updateLights();
            
            if(beatCounter == 4){
              beatCounter = 1;
@@ -148,9 +152,10 @@
            drawLineCenter(ctx, faded);
            drawLineLeft(ctx, faded);
            cloneCanvas();
+           updateNotes();
            beatCounter++;
          }
-         updateLights();
+         
 
        }
        b = beat;
@@ -421,5 +426,56 @@ function updateLights(){
 }
 
 function updateNotes(){
-  
+  var chosen = 0;
+  var randomNote = 0;
+  for(var i = 0; i < noteOn.length; i++){
+    if(noteOn[i]){
+      chosen = i;
+    }
+    
+
+  }
+
+  switch(chosen){
+
+    case 0:{
+      noteOn[chosen] = false;
+      document.getElementById("note0").style.color = "black";
+      document.getElementById("note1").style.color = faded;
+      document.getElementById("note2").style.color = faded;
+
+      randomNote = Math.floor(Math.random() * 2);
+
+      chosen = ((chosen + randomNote + 1) % 3);
+      noteOn[chosen] = true;
+
+      break;
+    }
+    case 1:{
+      noteOn[chosen] = false;
+      document.getElementById("note0").style.color = faded;
+      document.getElementById("note1").style.color = "black";
+      document.getElementById("note2").style.color = faded;
+
+      randomNote = Math.floor(Math.random() * 2);
+
+      chosen = ((chosen + randomNote + 1) % 3);
+      noteOn[chosen] = true;
+
+      break;
+    }
+    case 2:{
+      noteOn[chosen] = false;
+      document.getElementById("note0").style.color = faded;
+      document.getElementById("note1").style.color = faded;
+      document.getElementById("note2").style.color = "black";
+
+      randomNote = Math.floor(Math.random() * 2);
+
+      chosen = ((chosen + randomNote + 1) % 3);
+      noteOn[chosen] = true;
+      break;
+    }
+
+  }
 }
