@@ -23,6 +23,8 @@
  const platform   = document.querySelector("#platform");
  const frame1 = document.querySelector("#frame1");
  const frame2 = document.querySelector("#frame2");
+ const dropColor = document.querySelector("#colorChoice");
+
 
 
  let b, c;
@@ -48,6 +50,10 @@
 
  var ctx = audience.getContext("2d");
  var platCtx = platform.getContext("2d");
+
+ var chosenColor = dropColor.value;
+
+ 
  
  player.addListener({
    /* APIの準備ができたら呼ばれる */
@@ -103,7 +109,7 @@
    /* 再生位置の情報が更新されたら呼ばれる */
    onTimeUpdate(position) {
  
-
+    chosenColor = dropColor.value;
 
 
      // This Beats
@@ -122,7 +128,7 @@
 
          if(beatCounter == 1)
          {
-          drawLineLeft(ctx, miku);
+          drawLineLeft(ctx, colors[chosenColor]);
           drawLineCenter(ctx, faded);
           drawLineRight(ctx, faded);
           cloneCanvas();
@@ -132,7 +138,7 @@
 
          else if(beatCounter == 2 || beatCounter == 4)
          {
-           drawLineCenter(ctx, miku);
+           drawLineCenter(ctx, colors[chosenColor]);
            drawLineLeft(ctx, faded);
            drawLineRight(ctx, faded);
            cloneCanvas();
@@ -148,7 +154,7 @@
 
          else if(beatCounter == 3)
          {
-           drawLineRight(ctx, miku);
+           drawLineRight(ctx, colors[chosenColor]);
            drawLineCenter(ctx, faded);
            drawLineLeft(ctx, faded);
            cloneCanvas();

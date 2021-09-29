@@ -64,7 +64,7 @@ body {
     font-weight: bold;
   
     /* 子要素を横に並べて配置 / Align child content to the right */
-    display: flex;
+    
   
     /* 子要素は縦に中央揃え / Vertically middle-aligned */
     align-items: center;
@@ -74,7 +74,7 @@ body {
   #control {
     font-size: 21px;
     padding-right: 10px;
-    border-right: 1px solid #fff9;
+    padding-bottom: 5px;
   }
   #control.disabled {
     display: none;
@@ -91,9 +91,22 @@ body {
   }
   
   /* アーティストと楽曲の情報 / Artist and song info */
-  #meta {
+  #play {
+    padding-right: 5px;
     padding-left: 10px;
+    border-right: 1px solid #fff9;
   }
+
+  #stop{
+    padding-left: 0px;
+  }
+
+  #settings{
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+  }
+
   #meta span {
     font-weight: normal;
   }
