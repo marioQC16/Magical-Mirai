@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "magical mirai 2021",
   "dependencies": {
-    "textalive-app-api": "^0.3.0"
+    "textalive-app-api": "^0.3.1"
   },
   "scripts": {
     "dev": "parcel src/index.html --dist-dir dev",
