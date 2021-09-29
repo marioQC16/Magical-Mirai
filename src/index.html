@@ -6,13 +6,14 @@
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 
     <!--This creates the icons in loading, and player-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/regular.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/regular.min.css"/>
+    
+    <!--The css file for the webpage contents-->
     <link rel="stylesheet" href="./index.css" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
+
   <body>
     <!-- Overlay used when first loading the page -->
     <div id="overlay">
@@ -21,18 +22,20 @@
 
     <!-- Header contains the user controls -->
     <div id="header">
+
       <!-- Song controls -->
       <div id="control" class="far">
         <a href="#" id="play" class="disabled">&#xf144;</a>
         <a href="#" id="stop" class="disabled">&#xf28d;</a>
       </div>
+
       <!-- Artist and Song Info -->
       <div id="meta">
         <div id="artist">artist: <span>-</span></div>
         <div id="song">song: <span>-</span></div>
       </div>
 
-
+      <!--Penlight color selector-->
       <div id = "settings">Color
         <div> 
           <select id = "colorChoice"> 
@@ -44,45 +47,60 @@
             <option value = "5">MEIKO</option>
           </select>
         </div>
-
       </div>
+
     </div>
 
     <!-- Song source-->
     <div id="media"></div>
-<div id = "textBox">
-    <!-- The section that contains all Lyrics -->
-    <div id="lyrics">
-      <!-- Where the lyrics actually go -->
-      <div id="text"></div>
+
+    <!--The section where all lyric related things go-->
+    <div id = "textBox">
+
+      <!-- The section that contains all Lyrics -->
+      <div id="lyrics">
+
+        <!-- Where the lyrics actually go -->
+        <div id="text"></div>
+
+      </div>
     </div>
-</div>
 
-<div id = "stage">
-  <canvas id = "platform"></canvas>
-  <img id = "frame1" src="./assest/colorStage1.png"/>
-  <img id = "frame2" src="./assest/colorStage2.png" />
+    <!--The section where all stage related things go-->
+    <div id = "stage">
 
-  <div id = "light0" >●</div>
-  <div id = "light1" >●</div>
-  <div id = "light2" >●</div>
-  <div id = "light3" >●</div>
-  <div id = "light4" >●</div>
-  <div id = "light5" >●</div>
-  <div id = "light6" >●</div>
-  <div id = "light7" >●</div>
-  <div id = "light8" >●</div>
+      <!--The semi circle used as the stage-->
+      <canvas id = "platform"></canvas>
 
-  <div id = "note0">♪</div>
-  <div id = "note1">♪</div>
-  <div id = "note2">♪</div>
-</div>
+      <!-- The original art and it's 2 animation frames-->
+      <img id = "frame1" src="./assest/colorStage1.png"/>
+      <img id = "frame2" src="./assest/colorStage2.png" />
 
-<div id = "arena">
-<canvas id = "crowd">
-</canvas>
-</div>
+      <!--The lights around the stage that change colors-->
+      <div id = "light0" >●</div>
+      <div id = "light1" >●</div>
+      <div id = "light2" >●</div>
+      <div id = "light3" >●</div>
+      <div id = "light4" >●</div>
+      <div id = "light5" >●</div>
+      <div id = "light6" >●</div>
+      <div id = "light7" >●</div>
+      <div id = "light8" >●</div>
 
+      <!--The notes that light up on certain beats-->
+      <div id = "note0">♪</div>
+      <div id = "note1">♪</div>
+      <div id = "note2">♪</div>
+    </div>
+
+    <!--This is where things relating to the crowd will go-->
+    <div id = "arena">
+      <!--The crowd of the live-->
+      <canvas id = "crowd">
+      </canvas>
+    </div>
+
+    <!--The scripts needed on the webpage-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/textalive-app-api/dist/index.js"></script>
     <script src="./index.js"></script>
